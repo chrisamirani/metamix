@@ -20,5 +20,24 @@ contactForm.addEventListener("submit", async (e) => {
 
   const status = await res.json();
 
-  console.log(status);
+  if (res.status >= 400) {
+    showToast("Something went wrong");
+  } else {
+    showToast("We'll be in touch shortly");
+    e.target.reset();
+  }
 });
+
+function showToast(message) {
+  // Get the snackbar DIV
+  var x = document.getElementById("snackbar");
+
+  // Add the "show" class to DIV
+  x.className = "show";
+  x.innerText = message;
+
+  // After 3 seconds, remove the show class from DIV
+  setTimeout(function () {
+    x.className = x.className.replace("show", "");
+  }, 3000);
+}
