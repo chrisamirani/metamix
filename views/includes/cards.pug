@@ -1,0 +1,18 @@
+div(class="product-card" id=`https://metamix-cdn.nyc3.digitaloceanspaces.com/models/${product.sku}.glb`)
+    img(style="display:none;" src=`https://metamix-cdn.nyc3.digitaloceanspaces.com/thumbnails/${product.sku}.glb.png` onerror="this.parentNode.remove()")
+    model-viewer(
+        class="product-card-img" 
+        alt="A beautiful leather accent chair" 
+        src=`https://metamix-cdn.nyc3.digitaloceanspaces.com/models/${product.sku}.glb`
+        auto-rotate 
+        poster=`https://metamix-cdn.nyc3.digitaloceanspaces.com/thumbnails/${product.sku}.glb.png`
+        loading="lazy" 
+        reveal="manual"
+        shadow-intensity="1" 
+        auto-rotate-delay="0" 
+        onclick="this.dismissPoster()"
+        onerror="this.remove()"
+        ar 
+        camera-controls 
+        touch-action="pan-y")
+    h3=product.name 

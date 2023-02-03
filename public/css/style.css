@@ -4,8 +4,7 @@ html,
 body {
   height: 100%;
   margin: 0;
-  background-color: black;
-  color: white;
+  color: black;
   font-family: "Roboto", sans-serif;
 }
 html {
@@ -186,6 +185,22 @@ li {
   text-decoration: none;
 }
 
+.btn-thin {
+  padding: 10px;
+  font-size: 16px;
+  background: #d8f900;
+  border: none;
+  color: black;
+  text-decoration: none;
+}
+
+.pill {
+  border-radius: 100px;
+}
+
+.btn-active {
+  background: #d31159;
+}
 .btn:hover {
   box-shadow: 0 0 0 2px #d31159;
 }
@@ -211,6 +226,12 @@ li {
   height: 30px;
 }
 
+.category-container {
+  display: flex;
+  gap: 10px;
+  white-space: nowrap;
+  overflow-x: scroll;
+}
 /* The snackbar - position it at the bottom and in the middle of the screen */
 #snackbar {
   visibility: hidden; /* Hidden by default. Visible on click */
@@ -227,6 +248,26 @@ li {
   bottom: 30px; /* 30px from the bottom */
 }
 
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.product-card {
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #0403031c;
+  max-width: 400px;
+  min-width: 300px;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.product-card-img {
+  box-sizing: border-box;
+  width: 100%;
+}
 /* Show the snackbar when clicking on a button (class added with JavaScript) */
 #snackbar.show {
   visibility: visible; /* Show the snackbar */

@@ -1,0 +1,19 @@
+doctype html
+html(lang="en")
+    include includes/customHead.pug
+    body
+        include includes/nav.pug
+        
+        div(class="category-container container" id="category")
+            each category, key in categories 
+                a(class=`btn-thin pill ${key == currentCategory ? 'btn-active': ''}` id=key href=`/explore/${key}/${category[0].subCategory}`)=key
+
+        div(class="category-container container" id="sub-category")
+            each item, index in subCategories
+                a(class=`btn-thin pill ${item.subCategory == currentSubCategory ? 'btn-active': ''}` id=item.subCategory href=`/explore/${currentCategory}/${item.subCategory}`)=item.subCategory
+        div(class="products container")
+            each product in products 
+                include includes/cards.pug
+
+        include includes/footer.pug
+        script(src="/js/explore.js") 
