@@ -1,0 +1,268 @@
+{
+  "living-room-furniture": [
+    {
+      "category": {
+        "name": "Living Room Furniture",
+        "slug": "living-room-furniture"
+      },
+      "subCategory": { "name": "Sofas", "slug": "sofas" }
+    },
+    {
+      "category": {
+        "name": "Living Room Furniture",
+        "slug": "living-room-furniture"
+      },
+      "subCategory": { "name": "Sectionals", "slug": "sectionals" }
+    },
+    {
+      "category": {
+        "name": "Living Room Furniture",
+        "slug": "living-room-furniture"
+      },
+      "subCategory": { "name": "Loveseats", "slug": "loveseats" }
+    },
+    {
+      "category": {
+        "name": "Living Room Furniture",
+        "slug": "living-room-furniture"
+      },
+      "subCategory": {
+        "name": "Chairs & Recliners",
+        "slug": "chairs-recliners"
+      }
+    },
+    {
+      "category": {
+        "name": "Living Room Furniture",
+        "slug": "living-room-furniture"
+      },
+      "subCategory": { "name": "Coffee Tables", "slug": "coffee-tables" }
+    },
+    {
+      "category": {
+        "name": "Living Room Furniture",
+        "slug": "living-room-furniture"
+      },
+      "subCategory": { "name": "Ottomans & Poufs", "slug": "ottomans-poufs" }
+    },
+    {
+      "category": {
+        "name": "Living Room Furniture",
+        "slug": "living-room-furniture"
+      },
+      "subCategory": {
+        "name": "TV Stands & Entertainment Centers",
+        "slug": "tv-stands-entertainment-centers"
+      }
+    },
+    {
+      "category": {
+        "name": "Living Room Furniture",
+        "slug": "living-room-furniture"
+      },
+      "subCategory": { "name": "Storage Benches", "slug": "storage-benches" }
+    },
+    {
+      "category": {
+        "name": "Living Room Furniture",
+        "slug": "living-room-furniture"
+      },
+      "subCategory": { "name": "Cabinets & Chests", "slug": "cabinets-chests" }
+    },
+    {
+      "category": {
+        "name": "Living Room Furniture",
+        "slug": "living-room-furniture"
+      },
+      "subCategory": {
+        "name": "Storage Containers",
+        "slug": "storage-containers"
+      }
+    }
+  ],
+  "bedroom-furniture": [
+    {
+      "category": { "name": "Bedroom Furniture", "slug": "bedroom-furniture" },
+      "subCategory": {
+        "name": "Armoires & Wardrobes",
+        "slug": "armoires-wardrobes"
+      }
+    },
+    {
+      "category": { "name": "Bedroom Furniture", "slug": "bedroom-furniture" },
+      "subCategory": { "name": "Nightstands", "slug": "nightstands" }
+    },
+    {
+      "category": { "name": "Bedroom Furniture", "slug": "bedroom-furniture" },
+      "subCategory": { "name": "Dressers", "slug": "dressers" }
+    },
+    {
+      "category": { "name": "Bedroom Furniture", "slug": "bedroom-furniture" },
+      "subCategory": { "name": "Beds", "slug": "beds" }
+    },
+    {
+      "category": { "name": "Bedroom Furniture", "slug": "bedroom-furniture" },
+      "subCategory": {
+        "name": "Kids Bedroom Furniture",
+        "slug": "kids-bedroom-furniture"
+      }
+    },
+    {
+      "category": { "name": "Bedroom Furniture", "slug": "bedroom-furniture" },
+      "subCategory": { "name": "Makeup Vanities", "slug": "makeup-vanities" }
+    },
+    {
+      "category": { "name": "Bedroom Furniture", "slug": "bedroom-furniture" },
+      "subCategory": { "name": "Headboards", "slug": "headboards" }
+    }
+  ],
+  "kitchen-dining-furniture": [
+    {
+      "category": {
+        "name": "Kitchen & Dining Furniture",
+        "slug": "kitchen-dining-furniture"
+      },
+      "subCategory": {
+        "name": "Kitchen & Dining Tables",
+        "slug": "kitchen-dining-tables"
+      }
+    },
+    {
+      "category": {
+        "name": "Kitchen & Dining Furniture",
+        "slug": "kitchen-dining-furniture"
+      },
+      "subCategory": {
+        "name": "Kitchen & Dining Chairs",
+        "slug": "kitchen-dining-chairs"
+      }
+    },
+    {
+      "category": {
+        "name": "Kitchen & Dining Furniture",
+        "slug": "kitchen-dining-furniture"
+      },
+      "subCategory": { "name": "Bar Stools", "slug": "bar-stools" }
+    },
+    {
+      "category": {
+        "name": "Kitchen & Dining Furniture",
+        "slug": "kitchen-dining-furniture"
+      },
+      "subCategory": {
+        "name": "Sideboards & Buffets",
+        "slug": "sideboards-buffets"
+      }
+    },
+    {
+      "category": {
+        "name": "Kitchen & Dining Furniture",
+        "slug": "kitchen-dining-furniture"
+      },
+      "subCategory": { "name": "Bar Carts", "slug": "bar-carts" }
+    },
+    {
+      "category": {
+        "name": "Kitchen & Dining Furniture",
+        "slug": "kitchen-dining-furniture"
+      },
+      "subCategory": { "name": "Dining Hutches", "slug": "dining-hutches" }
+    }
+  ],
+  "home-accents": [
+    {
+      "category": { "name": "Home Accents", "slug": "home-accents" },
+      "subCategory": { "name": "Vases", "slug": "vases" }
+    },
+    {
+      "category": { "name": "Home Accents", "slug": "home-accents" },
+      "subCategory": {
+        "name": "Decorative Objects",
+        "slug": "decorative-objects"
+      }
+    },
+    {
+      "category": { "name": "Home Accents", "slug": "home-accents" },
+      "subCategory": {
+        "name": "Artificial Flowers & Plants",
+        "slug": "artificial-flowers-plants"
+      }
+    },
+    {
+      "category": { "name": "Home Accents", "slug": "home-accents" },
+      "subCategory": { "name": "Candles & Holders", "slug": "candles-holders" }
+    },
+    {
+      "category": { "name": "Home Accents", "slug": "home-accents" },
+      "subCategory": { "name": "Urns & Jars", "slug": "urns-jars" }
+    }
+  ],
+  "lighting": [
+    {
+      "category": { "name": "Lighting", "slug": "lighting" },
+      "subCategory": {
+        "name": "Flush Mounts & Semi Flush Mounts",
+        "slug": "flush-mounts-semi-flush-mounts"
+      }
+    },
+    {
+      "category": { "name": "Lighting", "slug": "lighting" },
+      "subCategory": { "name": "Chandeliers", "slug": "chandeliers" }
+    },
+    {
+      "category": { "name": "Lighting", "slug": "lighting" },
+      "subCategory": { "name": "Pendant Lighting", "slug": "pendant-lighting" }
+    },
+    {
+      "category": { "name": "Lighting", "slug": "lighting" },
+      "subCategory": { "name": "Ceiling Fans", "slug": "ceiling-fans" }
+    },
+    {
+      "category": { "name": "Lighting", "slug": "lighting" },
+      "subCategory": { "name": "Table Lamps", "slug": "table-lamps" }
+    },
+    {
+      "category": { "name": "Lighting", "slug": "lighting" },
+      "subCategory": { "name": "Floor Lamps", "slug": "floor-lamps" }
+    },
+    {
+      "category": { "name": "Lighting", "slug": "lighting" },
+      "subCategory": { "name": "Sconces", "slug": "sconces" }
+    }
+  ],
+  "window-treatments": [
+    {
+      "category": { "name": "Window Treatments", "slug": "window-treatments" },
+      "subCategory": { "name": "Curtains & Drapes", "slug": "curtains-drapes" }
+    },
+    {
+      "category": { "name": "Window Treatments", "slug": "window-treatments" },
+      "subCategory": { "name": "Blinds & Shades", "slug": "blinds-shades" }
+    }
+  ],
+  "wall-dcor": [
+    {
+      "category": { "name": "Wall Décor", "slug": "wall-dcor" },
+      "subCategory": {
+        "name": "Wall & Display Shelves",
+        "slug": "wall-display-shelves"
+      }
+    },
+    {
+      "category": { "name": "Wall Décor", "slug": "wall-dcor" },
+      "subCategory": { "name": "Wall Art", "slug": "wall-art" }
+    },
+    {
+      "category": { "name": "Wall Décor", "slug": "wall-dcor" },
+      "subCategory": { "name": "Tapestries", "slug": "tapestries" }
+    },
+    {
+      "category": { "name": "Wall Décor", "slug": "wall-dcor" },
+      "subCategory": { "name": "Wall Mirrors", "slug": "wall-mirrors" }
+    },
+    {
+      "category": { "name": "Wall Décor", "slug": "wall-dcor" },
+      "subCategory": { "name": "Wall Clocks", "slug": "wall-clocks" }
+    }
+  ]
+}

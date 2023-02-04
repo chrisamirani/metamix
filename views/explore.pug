@@ -6,11 +6,11 @@ html(lang="en")
         
         div(class="category-container container" id="category")
             each category, key in categories 
-                a(class=`btn-thin pill ${key == currentCategory ? 'btn-active': ''}` id=key href=`/explore/${key}/${category[0].subCategory}`)=key
+                a(class=`btn-thin pill ${key == currentCategory ? 'btn-active': ''}` id=key href=`/explore/${key}/${category[0].subCategory.slug}`)=category[0].category.name
 
         div(class="category-container container" id="sub-category")
-            each item, index in subCategories
-                a(class=`btn-thin pill ${item.subCategory == currentSubCategory ? 'btn-active': ''}` id=item.subCategory href=`/explore/${currentCategory}/${item.subCategory}`)=item.subCategory
+            each item in subCategories
+                a(class=`btn-thin pill ${item.subCategory.slug == currentSubCategory ? 'btn-active': ''}` id=item.subCategory.slug href=`/explore/${currentCategory}/${item.subCategory.slug}`)=item.subCategory.name
         div(class="products container")
             each product in products 
                 include includes/cards.pug

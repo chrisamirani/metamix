@@ -2,6 +2,19 @@ const express = require("express");
 const compress = require("compression");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const categories = require("./categories.json");
+function createSlug(str) {
+  str = str.replace(/^\s+|\s+$/g, ""); // Trim leading and trailing spaces
+  str = str.toLowerCase(); // Convert to lowercase
+
+  // Remove characters that are not alphanumeric, whitespaces, or dashes
+  str = str.replace(/[^a-z0-9\s-]/g, "");
+
+  // Replace whitespaces and consecutive dashes with a single dash
+  str = str.replace(/[\s-]+/g, "-");
+
+  return str;
+}
 
 dotenv.config();
 const app = express();
@@ -19,7 +32,7 @@ const contactSchema = new mongoose.Schema({
   email: String,
 });
 
-const categoriesSchema = new mongoose.Schema(
+const productsSchema = new mongoose.Schema(
   {},
   {
     strict: false,
@@ -27,7 +40,8 @@ const categoriesSchema = new mongoose.Schema(
 );
 
 const Contact = mongoose.model("Contact", contactSchema);
-const Category = mongoose.model("Category", categoriesSchema);
+
+const Product = mongoose.model("Product", productsSchema);
 
 app.use(compress());
 app.use(express.static("public"));
@@ -46,37 +60,25 @@ app.post("/contact", (req, res) => {
   });
 });
 
-app.get("/explore/:category/:subcategory", async (req, res) => {
-  Category.find({}, ["category", "subCategory"]).then((categories) => {
-    const all = {};
+app.get("/explore/:categorySlug/:subCategorySlug", async (req, res) => {
+  Product.find(
+    {
+      "category.slug": req.params.categorySlug,
+      "subCategory.slug": req.params.subCategorySlug,
+    },
+    (err, products) => {
+      if (!products) return res.status(404).render("404");
 
-    for (i = 0; i < categories.length; i++) {
-      const subCat = {
-        subCategory: categories[i]._doc.subCategory,
-        id: categories[i]._doc._id,
-      };
-      if (all[categories[i]._doc.category] != null) {
-        all[categories[i]._doc.category].push(subCat);
-      } else {
-        all[categories[i]._doc.category] = [subCat];
-      }
+      res.render("explore", {
+        categories,
+        subCategories: categories[req.params.categorySlug],
+        currentCategory: req.params.categorySlug,
+        currentSubCategory: req.params.subCategorySlug,
+        products,
+        title: "MetaMix | Explore all furniture in AR",
+      });
     }
-
-    Category.findOne(
-      { category: req.params.category, subCategory: req.params.subcategory },
-      (err, products) => {
-        if (!products) return res.status(404).render("404");
-        res.render("explore", {
-          categories: all,
-          subCategories: all[req.params.category],
-          currentCategory: req.params.category,
-          currentSubCategory: req.params.subcategory,
-          products: products._doc.products,
-          title: "MetaMix | Explore all furniture in AR",
-        });
-      }
-    );
-  });
+  );
 });
 
 app.get("/", (req, res, next) => {
