@@ -61,25 +61,35 @@ app.post("/contact", (req, res) => {
 });
 
 app.get("/explore/:categorySlug/:subCategorySlug", async (req, res) => {
-  Product.find(
-    {
-      "category.slug": req.params.categorySlug,
-      "subCategory.slug": req.params.subCategorySlug,
-      "threeDInfo.model.files": { $ne: null },
-    },
-    (err, products) => {
-      if (!products) return res.status(404).render("404");
+  const query = {
+    "category.slug": req.params.categorySlug,
+    "subCategory.slug": req.params.subCategorySlug,
+    "threeDInfo.model.files": { $ne: null },
+  };
+  const page = parseInt(req.query.page) || 1;
+  const pageSize = 10;
 
-      res.render("explore", {
-        categories,
-        subCategories: categories[req.params.categorySlug],
-        currentCategory: req.params.categorySlug,
-        currentSubCategory: req.params.subCategorySlug,
-        products,
-        title: "MetaMix | Explore all furniture in AR",
+  Product.countDocuments(query).then((count) => {
+    const totalPages = Math.ceil(count / pageSize);
+
+    Product.find(query)
+      .skip((page - 1) * pageSize)
+      .limit(pageSize)
+      .exec((err, products) => {
+        if (!products) return res.status(404).render("404");
+
+        res.render("explore", {
+          categories,
+          subCategories: categories[req.params.categorySlug],
+          currentCategory: req.params.categorySlug,
+          currentSubCategory: req.params.subCategorySlug,
+          products,
+          title: "MetaMix | Explore all furniture in AR",
+          totalPages,
+          activePage: page,
+        });
       });
-    }
-  );
+  });
 });
 
 app.get("/", (req, res, next) => {
