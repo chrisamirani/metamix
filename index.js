@@ -65,6 +65,7 @@ app.get("/explore/:categorySlug/:subCategorySlug", async (req, res) => {
     {
       "category.slug": req.params.categorySlug,
       "subCategory.slug": req.params.subCategorySlug,
+      "threeDInfo.model.files": { $ne: null },
     },
     (err, products) => {
       if (!products) return res.status(404).render("404");
