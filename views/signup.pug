@@ -1,0 +1,17 @@
+doctype html
+html(lang="en")
+    include includes/customHead.pug
+    body
+        include includes/nav.pug
+        div(class="flex-center")
+            
+            form
+                h1 Signup
+                input(type="text", name="name" placeholder="Your Name" minlength="3")
+                input(type="email", name="email" placeholder="Your Email")
+                input(type="password" name="password" placeholder="Your Password" minlength="6")
+                button(type="submit" class="btn") Let's Go! 
+                p Already signed up? <a href="/login">Login</a>
+        div(id="snackbar")
+        include includes/footer.pug
+        script(src="/js/signup.js") 

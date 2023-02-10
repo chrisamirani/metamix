@@ -16,3 +16,8 @@ div(class="product-card" id=`https://metamix-cdn.nyc3.digitaloceanspaces.com/mod
         camera-controls 
         touch-action="pan-y")
     h3=product.name 
+    p Dimensions:
+    div(class="specs")
+        p #[span(class="spec-label") W:] #{product.threeDInfo.model.dimensions.x.toFixed(1) + '"'}
+        p #[span(class="spec-label") H:] #{product.threeDInfo.model.dimensions.y.toFixed(1) + '"'}
+        p #[span(class="spec-label") D:] #{product.threeDInfo.model.dimensions.z.toFixed(1) + '"'}
