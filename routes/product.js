@@ -41,4 +41,30 @@ router.get(
   }
 );
 
+router.post("/items", authenticateUser, async (req, res) => {
+  const query = {
+    "subCategory.slug": req.body.slug,
+    "threeDInfo.model.files": { $ne: null },
+  };
+  const page = parseInt(req.body.page) || 1;
+  const pageSize = 10;
+
+  Product.countDocuments(query).then((count) => {
+    const totalPages = Math.ceil(count / pageSize);
+
+    Product.find(query)
+      .skip((page - 1) * pageSize)
+      .limit(pageSize)
+      .exec((err, products) => {
+        if (err || products.length == 0) {
+          return res.status(404).json({ code: 404 });
+        }
+        res.json({
+          products,
+          totalPages,
+        });
+      });
+  });
+});
+
 module.exports = router;

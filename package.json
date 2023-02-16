@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --config webpack.config.js --mode=development --watch",
     "dev": "nodemon -e js,css,html .",
-    "start": "npm i && nodemon index.js"
+    "start": "npm i && webpack --config webpack.config.js --mode=production && nodemon index.js"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,11 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.8.4",
     "nodemon": "^2.0.20",
+    "three": "^0.149.0",
     "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
   }
 }

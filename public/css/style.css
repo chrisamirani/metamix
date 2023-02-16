@@ -4,6 +4,7 @@
   --color-primary: #09dda0;
   --color-secondary: #000000;
   --color-inactive: #dcdcdc;
+  --shadow: 0px 0px 10px #e2e2e2;
 }
 
 html,
