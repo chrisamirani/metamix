@@ -22,7 +22,6 @@ router.get(
         .skip((page - 1) * pageSize)
         .limit(pageSize)
         .exec((err, products) => {
-          console.log({ err, products });
           if (err || products.length == 0)
             return res.status(404).render("error", { code: 404 });
 

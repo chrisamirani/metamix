@@ -2,8 +2,51 @@ import setupScene from "./SceneSetup";
 import * as THREE from "three";
 import ItemControls from "./ItemControls";
 import populateCategoriesList from "./LoadCategories";
-const { scene, camera, orbit, renderer } = setupScene();
+const controlPanel = document.querySelector(".control-panel");
+const controlPanelBtn = document.querySelector(".panel-open-btn");
+const scene3DBtn = document.querySelector("#main-view");
+const sceneFloorBtn = document.querySelector("#planner-view");
+const itemsPanel = document.querySelector(".items-panel");
 
+controlPanelBtn.addEventListener("click", (event) => {
+  const isOpen = event.target.innerText.includes("Hide");
+
+  if (isOpen) {
+    controlPanel.style.display = "none";
+    event.target.innerText = "Open Controls";
+  } else {
+    controlPanel.style.display = "block";
+    event.target.innerText = "Hide Controls";
+  }
+});
+
+const {
+  scenes: { Scene3D, SceneFloor },
+  camera: { camera2D, camera3D },
+  orbit: { orbit2D, orbit3D },
+  renderer,
+} = setupScene();
+
+let scene = Scene3D;
+let camera = camera3D;
+let orbit = orbit3D;
+scene3DBtn.addEventListener("click", (event) => {
+  scene = Scene3D;
+  camera = camera3D;
+  orbit = orbit3D;
+  scene3DBtn.classList.add("control-btn-active");
+  sceneFloorBtn.classList.remove("control-btn-active");
+  itemsPanel.style.display = "block";
+});
+sceneFloorBtn.addEventListener("click", (event) => {
+  scene = SceneFloor;
+  camera = camera2D;
+  orbit = orbit2D;
+  scene3DBtn.classList.remove("control-btn-active");
+  sceneFloorBtn.classList.add("control-btn-active");
+
+  itemsPanel.style.display = "none";
+});
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 populateCategoriesList();
