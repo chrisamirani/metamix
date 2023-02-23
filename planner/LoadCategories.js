@@ -52,7 +52,6 @@ const renderItems = async (slug) => {
 
   itemsContainer.childNodes.forEach((i) => {
     i.addEventListener("click", (e) => {
-      console.log(e);
       const modelId = e.currentTarget.id;
       const details = products.find((p) => p.sku == modelId);
       LoadItem(
