@@ -3,8 +3,7 @@ import { WallItemsLoader } from "./ItemLoader";
 export const loadWall = (vector1, vector2, scene) => {
   const v1 = { ...vector1, z: 0 };
   const v2 = { ...vector2, z: 0 };
-  //const position = new THREE.Vector3().copy(v1);
-  const direction = new THREE.Vector3().subVectors(v2, v1); // Direction of the plane
+  const direction = new THREE.Vector3().subVectors(v2, v1);
   const length = direction.length(); // Length of the plane
   const angle = Math.atan2(direction.y, direction.x); // Angle of the plane
 

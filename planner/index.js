@@ -11,6 +11,7 @@ const itemsPanel = document.querySelector(".items-panel");
 const rendererContainer = document.querySelector("#renderer");
 const translateBtn = document.querySelector("#translate-btn");
 const rotateBtn = document.querySelector("#rotate-btn");
+const objectControlPanel = document.querySelector("#tranform-buttons");
 
 const showARBtn = document.querySelector("#arBtn");
 
@@ -19,7 +20,10 @@ const {
   camera: { camera2D, camera3D },
   orbit: { orbit2D, orbit3D },
   renderer: { renderer2D, renderer3D },
+  gridHelper3D,
 } = setupScene();
+
+export let currentRoom, allRooms;
 
 controlPanelBtn.addEventListener("click", onControlPanelDisplayClick);
 
@@ -80,7 +84,12 @@ function onClick(event) {
 
   if (BoundingBox) {
     controls.attach(BoundingBox.object.parent);
+    objectControlPanel.style.top = `${event.clientY}px`;
+    objectControlPanel.style.left = `${event.clientX}px`;
+    objectControlPanel.style.display = "flex";
     scene.add(controls);
+  } else {
+    objectControlPanel.style.display = "none";
   }
 }
 
@@ -100,12 +109,20 @@ const getPoint = (e) => {
   mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
 };
 
-import FloorPlan from "./floor.json";
 import { onControlPanelDisplayClick } from "./ControlPlanel";
 import { showItemBoundingBox } from "./MouseMoveEvents";
 import { setControlMode } from "./MouseClickEvents";
-loadRoom(FloorPlan, scene);
-loadItems(FloorPlan, scene);
+import { getUserRooms } from "./API";
+import { floorPlaneLoader } from "./ItemLoader";
+import FloorPlan from "./floor.json";
+import { ExportScene } from "./ExportScene";
+getUserRooms().then((rooms) => {
+  if (!rooms) return;
+  currentRoom = rooms[0];
+  allRooms = rooms;
+  loadRoom(FloorPlan, scene);
+  loadItems(FloorPlan, scene);
+});
 
 renderer3D.domElement.addEventListener("mousemove", mouseMove, false);
 renderer3D.domElement.addEventListener("click", onClick, false);
@@ -155,7 +172,7 @@ orbit3D.addEventListener("change", () => {
   hideClosestObject(camera3D);
 });
 
-setTimeout(() => {
+showARBtn.addEventListener("click", () => {
   const exporter = new USDZExporter();
   exporter
     .parse(scene)
@@ -166,6 +183,21 @@ setTimeout(() => {
       showARBtn.href = URL.createObjectURL(blob);
     })
     .catch((error) => console.log({ error }));
-}, 2000);
+});
 
+document.addEventListener("keydown", (e) => {
+  if (e.code === "KeyP") {
+    console.log("presed");
+    floorPlaneLoader(scene, controls);
+  }
+  if (e.code === "KeyS") {
+    controls.setMode("scale");
+  }
+
+  if (e.code === "KeyD") {
+    gridHelper3D.visible = false;
+    ExportScene(scene);
+    gridHelper3D.visible = true;
+  }
+});
 export { camera, render, renderer, orbit, scene, controls };

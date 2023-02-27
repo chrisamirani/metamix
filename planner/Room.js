@@ -13,7 +13,6 @@ export const loadRoom = (plan, scene) => {
     corners[key].x = normalizeDimension(corners[key].x);
     corners[key].y = normalizeDimension(corners[key].y);
   });
-
   walls.forEach((wall) => {
     const vector1 = {
       x: corners[wall.corner1].x,

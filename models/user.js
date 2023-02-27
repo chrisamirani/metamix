@@ -31,6 +31,7 @@ const UserSchema = new Schema(
     },
     stripeSessionId: String,
     subscriptionExpires: Date,
+    rooms: [],
   },
   {
     timestamps: true,

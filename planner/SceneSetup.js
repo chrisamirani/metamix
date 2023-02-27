@@ -75,6 +75,7 @@ const setupScene = () => {
     renderer: { renderer3D, renderer2D },
     camera: { camera3D, camera2D },
     orbit: { orbit3D, orbit2D },
+    gridHelper3D,
   };
 };
 

@@ -130,7 +130,6 @@ body {
 
 .view-picker {
   position: absolute;
-  right: 0;
   display: flex;
   gap: 10px;
 }

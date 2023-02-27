@@ -1,7 +1,8 @@
 const categoryList = document.querySelector("#categories");
 const itemsContainer = document.querySelector("#items-container");
 const paginator = document.querySelector("#paginator");
-import { scene, controls } from "./index";
+import { scene } from "./index";
+
 import LoadItem from "./ItemLoader";
 
 const CDN_BASE_URL = "https://metamix-cdn.nyc3.digitaloceanspaces.com";
@@ -54,12 +55,7 @@ const renderItems = async (slug) => {
     i.addEventListener("click", (e) => {
       const modelId = e.currentTarget.id;
       const details = products.find((p) => p.sku == modelId);
-      LoadItem(
-        CDN_BASE_URL + `/models/${modelId}.glb`,
-        scene,
-        controls,
-        details
-      );
+      LoadItem(CDN_BASE_URL + `/models/${modelId}.glb`, scene);
     });
   });
   updatePaginator(maxPage);

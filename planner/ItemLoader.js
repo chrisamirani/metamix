@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-
+import { allRooms, currentRoom } from ".";
 const loading = document.querySelector(".loading");
 const loader = new GLTFLoader();
 
@@ -12,7 +12,7 @@ const removeShadowPlane = (scene) => {
   scene.children[0].children.splice(shadowPlaneIndex, 1);
 };
 
-const createBoundingBox = (scene) => {
+const createBoundingBox = (scene, needsOffset = true) => {
   const boundingBox = new THREE.Box3();
   boundingBox.setFromObject(scene, true);
   const { x, y, z } = boundingBox.getSize(new THREE.Vector3());
@@ -24,11 +24,13 @@ const createBoundingBox = (scene) => {
   });
   const cube = new THREE.Mesh(geometry, material);
   cube.name = "BoundingBox";
-  cube.position.setY(cube.scale.y / 2);
+  if (needsOffset) {
+    cube.position.setY(cube.scale.y / 2);
+  }
   return cube;
 };
 
-const ItemLoader = (ItemURL, scene, controls, details) => {
+const ItemLoader = (ItemURL, scene) => {
   const onLoad = (gltf) => {
     removeShadowPlane(gltf.scene);
     const boundingBox = createBoundingBox(gltf.scene);
@@ -39,6 +41,7 @@ const ItemLoader = (ItemURL, scene, controls, details) => {
     group.name = "Group";
 
     scene.add(group);
+    console.log({ allRooms, currentRoom });
   };
 
   const onProgress = (xhr) => {
@@ -60,7 +63,6 @@ const ItemLoader = (ItemURL, scene, controls, details) => {
 export const WallItemsLoader = (ItemURL, scene, position, rotation, scale) => {
   const onLoad = (gltf) => {
     removeShadowPlane(gltf.scene);
-
     const group = new THREE.Group();
     group.add(gltf.scene);
     group.name = "WallItems";
@@ -76,22 +78,23 @@ export const WallItemsLoader = (ItemURL, scene, position, rotation, scale) => {
       group.scale.z += scale.z / 10;
     }
 
-    // if (ItemURL.includes("win")) {
-    //   const planeGeometry = new THREE.PlaneGeometry(scale.x, scale.y);
+    if (ItemURL.includes("win")) {
+      const planeGeometry = new THREE.PlaneGeometry(scale.x, scale.y);
+      const material = new THREE.MeshBasicMaterial({ color: 0xadd8e6 });
+      const plane = new THREE.Mesh(planeGeometry, material);
+      const boundingBox = createBoundingBox(plane, false);
+      const glassGroup = new THREE.Group();
+      glassGroup.add(boundingBox);
 
-    //   // Create a blue material
-    //   const material = new THREE.MeshBasicMaterial({ color: 0xadd8e6 });
+      glassGroup.add(plane);
 
-    //   // Create a mesh with the plane geometry and material
-    //   const plane = new THREE.Mesh(planeGeometry, material);
-
-    //   plane.position.set(position.x + 0.02, position.y, position.z);
-    //   plane.rotation.y = rotation.y;
-    //   plane.scale.x += scale.x / 10;
-    //   plane.scale.y += scale.y / 10;
-    //   plane.scale.z += scale.z / 10;
-    //   scene.add(plane);
-    // }
+      glassGroup.position.set(position.x, position.y, position.z);
+      glassGroup.rotation.y = rotation.y;
+      glassGroup.scale.x += scale.x;
+      glassGroup.scale.y += scale.y / 10;
+      glassGroup.scale.z += scale.z / 10;
+      scene.add(glassGroup);
+    }
     scene.add(group);
 
     //scene.add(gltf.scene);
@@ -111,5 +114,29 @@ export const WallItemsLoader = (ItemURL, scene, position, rotation, scale) => {
   };
 
   loader.load(ItemURL, onLoad, onProgress, onError);
+};
+
+export const floorPlaneLoader = (scene, transformControls) => {
+  const texture = new THREE.TextureLoader().load("img/floor.png");
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+
+  const geometry = new THREE.PlaneGeometry(2, 2);
+  const material = new THREE.MeshBasicMaterial({
+    side: THREE.DoubleSide,
+    map: texture,
+  });
+  const floorPlane = new THREE.Mesh(geometry, material);
+
+  const boundingBox = createBoundingBox(floorPlane, false);
+
+  const group = new THREE.Group();
+  group.add(boundingBox);
+  group.add(floorPlane);
+  group.rotateX(Math.PI / 2);
+  group.rotateZ(Math.PI / 2);
+  group.name = "Group";
+
+  scene.add(group);
 };
 export default ItemLoader;

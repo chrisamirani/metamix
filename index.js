@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 const userRouter = require("./routes/user");
 const mainRouter = require("./routes/main");
 const productRouter = require("./routes/product");
+const homeRouter = require("./routes/home");
 const cookieParser = require("cookie-parser");
 dotenv.config();
 
@@ -30,6 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(mainRouter);
 app.use(userRouter);
 app.use(productRouter);
+app.use(homeRouter);
 
 app.listen(process.env.PORT ?? 3000, () => {
   console.log("server started");
